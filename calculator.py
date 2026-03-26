@@ -14,6 +14,7 @@ class Calculator:
         # initialize calculater with root as main window
         self.root = root
         self.root.title("Calculator")
+        self.root.geometry("575x718")
         self.root.resizable(False, False)
         self.root.configure(bg=bg_main)
         # StringVar is a variable in tkinter that stores a string value and updates the display when the user inputs a value.
@@ -26,7 +27,7 @@ class Calculator:
         display_frame = tk.Frame(self.root, bg=bg_display)
         display_frame.pack(fill="both")
         # Label widget shows text on the screen
-        tk.Label(display_frame, textvariable=self.expression, font=("Times New Roman", 60), bg=bg_display, fg=bg_text, anchor="e").pack(fill="both")
+        tk.Label(display_frame, textvariable=self.expression, font=("Times New Roman", 60), bg=bg_display, fg=bg_text, anchor="e", width=20).pack(fill="both")
 
 
         button_layout = [
@@ -57,32 +58,38 @@ class Calculator:
                 #.grid places the button in grid layout
                 button.grid(row=r, column=c, padx=4, pady=4)
 
+    # Add this helper method to your class
+    def _update_display(self, value):
+        # If the expression is longer than 12 chars, show "..." + last 12 chars
+        display = str(value)
+        if len(display) > 12:
+            display = "..." + display[-12:]
+        self.expression.set(display)
 
     def on_click(self, value):
         current = self.expression.get()
 
         if value == "C":
-            self.expression.set("0")
+            self._update_display("0")
         elif value == "⌫":
             if len(current) > 1:
-                self.expression.set(current[:-1])
+                self._update_display(current[:-1])
             else:
-                self.expression.set("0")
+                self._update_display("0")
         elif value == "=":
             try:
                 result = eval(current)
                 if float(result).is_integer():
-                   self.expression.set(int(result))
+                    self._update_display(int(result))
                 else:
-                   self.expression.set(round(result, 10))
+                    self._update_display(round(result, 10))
             except Exception:
-                self.expression.set("Error")
+                self._update_display("Error")
         else:
-            if current == "0" and value not in ("+", "-", "*", "/", "%", "."):
-                self.expression.set(value)
+            if current == "0" and value not in ("+", "-", "*",    "/", "%", "."):
+                self._update_display(value)
             else:
-                self.expression.set(current + value)
-
+                self._update_display(current + value)
 
 
 
