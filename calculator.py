@@ -1,5 +1,7 @@
+# import tkinter the alias tk 
+# tkinter is used to create graphical user interfaces in python
 import tkinter as tk
-# we give tkinter the alias tk for easier 
+
 
 #color scheme for the calculator
 bg_main = "#1C1C1C"
@@ -10,9 +12,10 @@ bg_text = "#ffffff"
 
 # we use class to create a calculator object
 class Calculator:
+    # initializes the calculator with the main window and sets up user interface
     def __init__(self, root):
-        # initialize calculater with root as main window
         self.root = root
+        # sets the title of the window makes it non-resizable and sets background color
         self.root.title("Calculator")
         self.root.resizable(False, False)
         self.root.geometry("575x718")
@@ -23,6 +26,7 @@ class Calculator:
         # Creates the user interface
         self._build_ui_()
 
+    # Creates frame, label and buttons and arranges them in a grid layout.
     def _build_ui_(self):
         display_frame = tk.Frame(self.root, bg=bg_main)
         display_frame.pack(fill="both")
@@ -37,9 +41,11 @@ class Calculator:
             ["1", "2", "3", "+"],
             ["00", "0", ".", "="],
         ]
+        # creates a frame for the buttons and packs it to fill the main window
         button_frame = tk.Frame(self.root, bg=bg_main)
         button_frame.pack(fill="both")
 
+        # Iterates through the button layout and creates buttons.
         for r, row in enumerate(button_layout):
             for c, label in enumerate(row):
                 if label == "=":
@@ -59,7 +65,7 @@ class Calculator:
                 #.grid places the button in grid layout
                 button.grid(row=r, column=c, padx=4, pady=4)
 
-    # Add this helper method to your class
+    # Updates the display with the given value and does not exceed limit
     def _update_display(self, value):
         # If the expression is longer than 12 chars, show "..." + last 12 chars
         display = str(value)
@@ -67,6 +73,7 @@ class Calculator:
             display = "..." + display[-12:]
         self.expression.set(display)
 
+    # Handles button clicks and updates the display accordingly. It evaluates the expressions and handles errors.
     def on_click(self, value):
         current = self.expression.get()
 
