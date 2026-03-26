@@ -2,9 +2,9 @@ import tkinter as tk
 # we give tkinter the alias tk for easier 
 
 #color scheme for the calculator
-bg_main = "#1d3849"
-bg_display = "#a2bbcf"
-bg_button = "#205b7a"
+bg_main = "#1C1C1C"
+bg_special = "#B9BBB6"
+bg_button = "#505050"
 bg_operator = "#FF9500"
 bg_text = "#ffffff"
 
@@ -14,8 +14,8 @@ class Calculator:
         # initialize calculater with root as main window
         self.root = root
         self.root.title("Calculator")
-        self.root.geometry("575x718")
         self.root.resizable(False, False)
+        self.root.geometry("575x718")
         self.root.configure(bg=bg_main)
         # StringVar is a variable in tkinter that stores a string value and updates the display when the user inputs a value.
         self.expression = tk.StringVar()  
@@ -24,10 +24,10 @@ class Calculator:
         self._build_ui_()
 
     def _build_ui_(self):
-        display_frame = tk.Frame(self.root, bg=bg_display)
+        display_frame = tk.Frame(self.root, bg=bg_main)
         display_frame.pack(fill="both")
         # Label widget shows text on the screen
-        tk.Label(display_frame, textvariable=self.expression, font=("Times New Roman", 60), bg=bg_display, fg=bg_text, anchor="e", width=20).pack(fill="both")
+        tk.Label(display_frame, textvariable=self.expression, font=("Times New Roman", 60), bg=bg_main, fg=bg_text, anchor="e", width=20).pack(fill="both")
 
 
         button_layout = [
@@ -44,9 +44,10 @@ class Calculator:
             for c, label in enumerate(row):
                 if label == "=":
                     bg_color = bg_operator
-                elif label in ["C", "⌫"]:
-                    bg_color = bg_operator
-                elif label in ["+", "-", "*", "/", "%"]:
+                elif label in ["C", "⌫", "%"]:
+                    bg_color = bg_special
+                    fg_color = bg_main
+                elif label in ["+", "-", "*", "/"]:
                     bg_color = bg_operator
                 else:
                     bg_color = bg_button
