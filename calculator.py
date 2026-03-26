@@ -58,36 +58,36 @@ class Calculator:
                 button.grid(row=r, column=c, padx=4, pady=4)
 
 
-#     def on_click(self, value):
-#         current = self.expression.get()
+    def on_click(self, value):
+        current = self.expression.get()
 
-#         if value == "C":
-#             self.expression.set("0")
-#         elif value == "⌫":
-#             if len(current) > 1:
-#                 self.expression.set(current[:-1])
-#             else:
-#                 self.expression.set("0")
-#         elif value == "=":
-#             try:
-#                 result = eval(current)
-#                 if float(result).is_integer():
-#                    self.expression.set(int(result))
-#                 else:
-#                    self.expression.set(round(result, 10))
-#             except Exception:
-#                 self.expression.set("Error")
-#         else:
-#             if current == "0" and value not in ("+", "-", "*", "/", "%", "."):
-#                 self.expression.set(value)
-#             else:
-#                 self.expression.set(current + value)
-
-
+        if value == "C":
+            self.expression.set("0")
+        elif value == "⌫":
+            if len(current) > 1:
+                self.expression.set(current[:-1])
+            else:
+                self.expression.set("0")
+        elif value == "=":
+            try:
+                result = eval(current)
+                if float(result).is_integer():
+                   self.expression.set(int(result))
+                else:
+                   self.expression.set(round(result, 10))
+            except Exception:
+                self.expression.set("Error")
+        else:
+            if current == "0" and value not in ("+", "-", "*", "/", "%", "."):
+                self.expression.set(value)
+            else:
+                self.expression.set(current + value)
 
 
-# if __name__ == "__main__":
-#     root = tk.Tk()
-#     app = Calculator(root)
-#     # keeps the window open until user closes it
-#     root.mainloop()
+
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = Calculator(root)
+    # keeps the window open until user closes it
+    root.mainloop()
