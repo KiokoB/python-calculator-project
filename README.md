@@ -18,11 +18,11 @@ Handles decimals and chained operations
 Error handling for invalid expressions
 
 ## Technology summary
-# What is python?
+### What is python?
 Python is a high-level, interpreted, general-purpose programming language known for its simple readable syntax that emphasizes code clarity. It supports object-oriented, structured, and functional programming, making it highly versatile
 for web development, data science, AI, and automation.
 
-# What is tkinter?
+### What is tkinter?
 Tkinter is the standard Python library for creating graphical user interfaces. It provides an object-oriented interface
 to the cross-platform Tk GUI toolkit, and is included with most standard Python installations, making it easily 
 accessible for beginners without requiring additional setup. It lets you create windows, buttons, labels, input fields 
